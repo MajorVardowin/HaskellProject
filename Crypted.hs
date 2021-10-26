@@ -1,3 +1,7 @@
+module Crypted
+(
+  main
+) where
 import MyPrimeFunctions
 import MyMathFunctions
 
