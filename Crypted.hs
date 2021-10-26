@@ -21,14 +21,14 @@ checkE = MyPrimeFunctions.check berechnungM e
 {-Programmablauf-}
 a = "Test"
 main = do
-    putStrLn "Input: p"
-    p <- getLine
-    putStrLn "Input: q"
-    q <- getLine
-    putStrLn "Input: e"
-    e <- getLine
-    --n <- p*q
-    --m <- (p-1) * (q-1)
-    test   
+  putStrLn "Input: p"
+  p <- getLine
+  putStrLn "Input: q"
+  q <- getLine
+  putStrLn "Input: e"
+  e <- getLine
+  --n <- p*q
+  --m <- (p-1) * (q-1)
+  test   
 
 test = putStrLn a
