@@ -1,3 +1,8 @@
+module ToCryptingInt
+(
+ beginCrypt,
+ convertToCryptingInt
+)where
 import Data.Char
 
 {-
@@ -29,6 +34,9 @@ binaryToInt (l:ls) n = l*n + binaryToInt ls (n*2)
 
 convertToCryptingInt [] = []
 convertToCryptingInt ls = binaryToInt (take 16 (stringToBinary ls)) 1 : convertToCryptingInt (drop 2 ls)
+
+beginCrypt = do
+    convertToCryptingInt <$> getLine
 {-
 Es wird ein String erst in eine Liste aus Integer umgeformt, wobei ein Int aus jeweils 2 Buchstaben besteht
 -}

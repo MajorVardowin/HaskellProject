@@ -1,8 +1,12 @@
+module InToString
+(
+mainConvert
+)where
 import Data.Char
 
 {-
     Wieder in Schrift umwandeln!
-    1. Man hat einen String Zahlen (siehe f), immer 2 Buchstaben wurden zu einer Zahl umgeform.
+    1. Man hat einen String Zahlen (siehe f), immer 2 Buchstaben wurden zu einer Zahl umgeformt.
     2. durch convert werden diese Zahlen wieder in die 2 einzelnen Buchstaben aufgeteilt.
     3. flatten schreibt alle Zahlen hintereinander und entfernt verschachtelungen.
 -}
@@ -24,6 +28,10 @@ convert = map (toInt . myToBinary)
         toInt [] = []
         toInt ls = binaryToInt (take 8 ls) : toInt (drop 8 ls)
 
+mainConvert intArr = map chr (concat (convert intArr)) 
+
+    
+    
 -- BEISPIELE -- BEISPIELE -- BEISPIELE -- BEISPIELE -- BEISPIELE --
 
 beispiel = map chr (concat (convert satz)) -- satz wird konvertiert, Liste 'flatted' und jedes Element in ein ASCII Zeichen konvertiert

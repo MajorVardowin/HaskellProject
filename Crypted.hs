@@ -4,6 +4,8 @@ module Crypted
 ) where
 import MyPrimeFunctions
 import MyMathFunctions
+import ToCryptingInt
+import InToString
 
 q = 7
 p = 11
@@ -19,16 +21,13 @@ getPrivate = get2ndOf3 (MyMathFunctions.extendedEuclidean e berechnungM) + berec
 checkE = MyPrimeFunctions.check berechnungM e
 
 {-Programmablauf-}
-a = "Test"
 main = do
-  putStrLn "Input: p"
-  p <- getLine
-  putStrLn "Input: q"
-  q <- getLine
-  putStrLn "Input: e"
-  e <- getLine
-  --n <- p*q
-  --m <- (p-1) * (q-1)
-  test   
-
-test = putStrLn a
+  putStrLn "Input: Test String"
+  str <- getLine
+  let
+    a = convertToCryptingInt str -- der eingegebene String wird in ein Array aus Int konvertiert
+  print a
+  let 
+    b = mainConvert a -- Array aus Zahlen wird in String umgeformt
+  print b
+  putStrLn "Ende"
