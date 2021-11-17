@@ -8,3 +8,25 @@ string == [char] -> map Verschlüsselung string
 
 Char -> 
 Verschlüsselung a = mach mal Mathe mit a
+
+A -> ASCII (binär 7 stellen) -> toBuchstabe (take 7 ASCII)
+"Test" -> [84,101,115,116] -> binärzahlen
+
+
+Test.hs:
+stringToBinary "Test"
+    --> concatMap toBinary.toInt "Test"  //concatMap == concat $ map 
+    // es wird jedes Element aus der "Test"-Liste genommen, in einen Bit-Wert /// umgeform und dann eine Liste mit allen Werten ausgegeben
+    // wichtig Liste ist umgekehrt -> [0,0,0,0,0,0,0,1] = 128
+    --> convertToCryptingInt 2 Buchstaben werden zu einem Bitwert verkettet
+    // Bspw.: "Te" T = 84 = 01010100 => [0,0,1,0,1,0,1,0]; e = 115 = 01100101 => [1,0,1,0,0,1,1,0]
+    //          => [0,0,1,0,1,0,1,0,1,0,1,0,0,1,1,0] = 25940
+    // Aus "Test" wird so [25940,29811]
+    // Auf jede dieser Zahlen Verschlüsselung anwenden
+
+
+
+
+
+
+
