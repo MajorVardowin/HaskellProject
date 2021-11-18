@@ -3,6 +3,7 @@ https://hackage.haskell.org/package/cryptocipher-0.3.0/docs/Crypto-Cipher-RSA.ht
 https://github.com/vincenthz/hs-crypto-cipher
 https://titanwolf.org/Network/Articles/Article?AID=b61f8376-7dbe-4de6-a02d-036afb190a34
 https://stackoverflow.com/questions/57513806/how-does-rsa-work-while-encrypting-a-sentence
+https://de.acervolima.com/so-generieren-sie-grosse-primzahlen-fur-den-rsa-algorithmus/
 
 string == [char] -> map Verschlüsselung string
 
