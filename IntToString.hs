@@ -1,4 +1,4 @@
-module InToString
+module IntToString
 (
 mainConvert
 )where

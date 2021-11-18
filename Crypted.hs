@@ -5,7 +5,7 @@ module Crypted
 import MyPrimeFunctions
 import MyMathFunctions
 import ToCryptingInt
-import InToString
+import IntToString
 
 q = 7
 p = 11
