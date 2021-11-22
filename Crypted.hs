@@ -31,3 +31,7 @@ main = do
     b = mainConvert a -- Array aus Zahlen wird in String umgeformt
   print b
   putStrLn "Ende"
+
+  {-
+  [25940,29811,25940,29811,25940,29811,25940,29811,25940,29811,25940,29811,25940,29811]
+  -}
