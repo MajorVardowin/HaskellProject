@@ -4,6 +4,7 @@ entschl
 )where
 import AsciiConverter 
 import System.IO
+import StringToIntArr
 
 entschl = do
 
@@ -13,14 +14,20 @@ entschl = do
     handle <- openFile "n.txt" ReadMode
     nTemp <- hGetContents handle
 
+    handle <- openFile "Input.txt" ReadMode
+    inputTemp <- hGetContents handle
+
+    
+
     putStrLn "Übergangseingabe"
     putStr ">>"
     eingabe <- getLine
 
     let
+        input = map toInteger (nimm inputTemp)
         d = read dTemp
         n = read nTemp
-        v = read eingabe
+        v = head input
         -- Für jedes Element des Arrays anwenden
         vInString = asciiIntToString v -- Ab hier entschlüsseln
         vWiederInInt = asciiStringtoInt vInString
@@ -28,8 +35,8 @@ entschl = do
         vEntschlüsselt = rsaSchluesseln  vFormatiertAlsString  d n
         entschluesseltAscii = asciiIntToString vEntschlüsselt
 
-
     putStrLn entschluesseltAscii
+    hClose handle
 
 
 
