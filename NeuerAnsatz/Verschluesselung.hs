@@ -29,7 +29,7 @@ verschl = do
         arr = eingabeInArray eingabe
         arr2 = verschlVonArr arr e n
 
-    writeFile "Output.txt" (show arr2)
+    writeFile "Verschl.txt" (show arr2)
 
     print arr2
 
