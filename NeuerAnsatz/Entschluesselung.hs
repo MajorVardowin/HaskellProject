@@ -17,24 +17,10 @@ entschl = do
     handle <- openFile "Verschl.txt" ReadMode
     inputTemp <- hGetContents handle
 
-
-
-    putStrLn "Übergangseingabe"
-    putStr ">>"
-    eingabe <- getLine
-
     let
         input = map toInteger (nimm inputTemp)
         d = read dTemp
         n = read nTemp
-        v = head input
-        -- Für jedes Element des Arrays anwenden
-        vInString = asciiIntToString v -- Ab hier entschlüsseln
-        vWiederInInt = show (asciiStringtoInt vInString)
-        --vFormatiertAlsString = vWiederInInt
-        vEntschlüsselt = rsaSchluesseln  vWiederInInt d n
-        entschluesseltAscii = asciiIntToString vEntschlüsselt
-        
 
         result = map asciiIntToString input
         result2 = map asciiStringtoInt result
@@ -47,17 +33,13 @@ entschl = do
         -}
     writeFile "Nachricht.txt" endresult
     
-    print vInString
-    print vWiederInInt
-    print vEntschlüsselt
-    print entschluesseltAscii
-    print "---------"
     print result
     print result2
     print result3
     print result4
     print result5
     print endresult
+    
     hClose handle
 
 

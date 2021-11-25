@@ -1,17 +1,37 @@
 module Verschluesselung
 (
-verschl
+verschlMain
 )where
 
 import AsciiConverter
 import System.IO
 
 
-verschl = do
+verschlMain = do
+    putStrLn "Was möchtest du verschlüsseln?"
+    putStrLn "1: Konsoleneingabe (Standard)"
+    putStrLn "2: Aus Datei [Nachricht.txt]"
+    putStr ">>"
+    decision <- getLine
+    
+    if decision == "2"
+    then do directory
+    else do console
+
+console = do
     putStrLn "Bitte den zu verschlüsselnden Wert eingeben"
     putStr ">>"
     eingabe <- getLine
+    verschl eingabe
 
+directory = do
+    handle <- openFile "Nachricht.txt" ReadMode
+    eingabe <- hGetContents handle
+    verschl eingabe
+    hClose handle
+
+verschl eingabe = do
+    
     handle <- openFile "e.txt" ReadMode
     eTemp <- hGetContents handle
 

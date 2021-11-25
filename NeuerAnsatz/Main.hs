@@ -15,7 +15,7 @@ main = do
     if decide == "1"
     then generateDo
     else    if decide == "2"
-            then do verschl
+            then do verschlMain
             else do entschl
 
     putStrLn "Ende"
