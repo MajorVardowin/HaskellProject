@@ -1,3 +1,82 @@
+module Vingere
+(
+    mainVingere
+)
+where
+import System.IO
+
+mainVingere = do
+    putStrLn "Möchtest du:"
+    putStrLn "1. Verschlüsseln"
+    putStrLn "2. Entschlüsseln"
+    putStrLn "3. Beenden"
+    putStrLn "Eingabe bitte mittels 1, 2 oder 3"
+    putStr ">> "
+    decide <- getLine
+
+    if decide == "1"
+    then do
+        verschl
+    else 
+        if decide == "2"
+        then do
+            entschl
+        else
+            if decide == "3"
+            then 
+                putStrLn "Ende"
+            else do
+                mainVingere
+    if decide == "3"
+    then putStrLn "Ende"
+    else do 
+        mainVingere
+
+
+verschl = do
+    putStrLn "Wie möchtest du die Nachricht eingeben?"
+    input <- inputMethode "Nachricht.txt"
+    putStrLn "Wie lautet der Schluessel?"
+    putStr ">> "
+    key <- getLine
+
+    writeFile "VingereKey.txt" key
+
+    let
+        out = vigenereVer input key
+    writeFile "Verschl.txt" out
+    putStrLn "Die verschlüsselte Nachricht lautet: "
+    putStrLn out
+
+entschl = do
+    putStrLn "Woher stammt die Verschlüsselte Nachricht?"
+    input <- inputMethode "Verschl.txt"
+    
+    putStrLn "Als letztes den Key!"
+    key <- inputMethode "VingereKey.txt"
+
+    let
+        out = vigenereEnt input key
+    writeFile "Nachricht.txt" out
+    putStrLn "Die entschlüsselte Nachricht lautet: "
+    putStrLn out
+
+
+inputMethode datei = do
+    putStrLn "1. Aus Datei lesen"
+    putStrLn "2. Über Kommandozeile eingeben"
+    putStr ">> "
+    inputM <- getLine
+
+    if inputM == "1"
+    then do
+        handle <- openFile datei ReadMode
+        input <- hGetContents handle
+        return input
+    else do
+        putStrLn "Bitte eingeben:"
+        putStr ">> "
+        getLine
 
 vigenereVer nachricht schluessel  =  vigenere nachricht schluessel "" 1
 vigenereEnt nachricht schluessel  = vigenere nachricht schluessel "" (-1)
@@ -48,20 +127,3 @@ erzeugeAsciiBuchstabe neuerWert  1 | mod neuerWert 30 == 26 = 228
                                     | mod neuerWert 30 == 28 = 252
                                     | mod neuerWert 30 == 29 = 223
                                     | otherwise = 97 + mod neuerWert 30
-
-
-caesar :: [Char] -> Int -> Int -> [Char]
-caesar wort verschiebung richtung = caesarTextZusammen wort (richtung * verschiebung) 
-
-
-caesarTextZusammen :: [Char] -> Int -> [Char]
-caesarTextZusammen [] verschiebung = []
-caesarTextZusammen wort verschiebung = (toEnum (berechneCaesar (head wort) verschiebung)::Char) : caesarTextZusammen (tail wort) verschiebung
-
-
-berechneCaesar :: Char -> Int -> Int
-berechneCaesar a b  | zahlA >= 65 && zahlA <= 90 = mod (zahlA - 65 + b) laengeAlphabet + 65
-                    | zahlA >= 97 && zahlA <= 122 = mod (zahlA - 97 + b) laengeAlphabet + 97
-                    | otherwise = zahlA
-    where zahlA = fromEnum a
-          laengeAlphabet = 26
