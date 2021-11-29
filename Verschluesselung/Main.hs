@@ -7,6 +7,7 @@ import Rsa
 import Caesar
 import Vingere
 
+-- ghc -o ProjektVerschluesselungen Main.hs
 
 main = do
     putStrLn "Hallo welche Verschlüsselung möchtest du Nutzen?"
