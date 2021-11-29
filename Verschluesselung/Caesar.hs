@@ -51,7 +51,7 @@ mainCaesar = do
 
 verschl = do
     input <- inputMethode "Nachricht.txt"
-    putStrLn "Wie lautet der Schluessel?"
+    putStrLn "Wie lautet der Schlüssel?"
     putStr ">>"
     key <- getLine
 
@@ -63,7 +63,7 @@ verschl = do
 
 entschl = do
     input <- inputMethode "Verschl.txt"
-    putStrLn "Wie lautet der Schluessel?"
+    putStrLn "Wie lautet der Schlüssel?"
     putStr ">>"
     key <- getLine
 

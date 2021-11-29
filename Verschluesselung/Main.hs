@@ -9,7 +9,7 @@ import Vingere
 
 
 main = do
-    putStrLn "Hallo welche Verschluesselung moechtest du Nutzen?"
+    putStrLn "Hallo welche Verschlüsselung möchtest du Nutzen?"
     putStrLn "1. RSA"
     putStrLn "2. Vigenere"
     putStrLn "3. Caesar"
