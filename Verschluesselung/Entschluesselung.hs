@@ -38,7 +38,11 @@ entschl = do
     print result3
     print result4
     print result5
-    print endresult
+
+    putStrLn ""
+    putStrLn "\n\tDie entschlüsselte Nachricht lautet: "
+    putStr ("\t" ++ endresult)
+    putStrLn "\n"
     
     hClose handle
 

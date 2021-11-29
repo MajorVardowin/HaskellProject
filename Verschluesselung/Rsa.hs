@@ -29,7 +29,11 @@ mainRsa = do
             then 
                 entschl
             else do
-                mainRsa
+                if decide == "4"
+                then 
+                    putStrLn "Ende"
+                else do 
+                    mainRsa
     if decide == "4"
     then putStrLn "Ende"
     else do 

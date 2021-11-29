@@ -50,6 +50,7 @@ mainCaesar = do
 
 
 verschl = do
+    putStrLn "Wie möchtest du die Nachricht eingeben?"
     input <- inputMethode "Nachricht.txt"
     putStrLn "Wie lautet der Schlüssel?"
     putStr ">>"
@@ -58,10 +59,11 @@ verschl = do
     let
         out = caesar input (read key) 1
     writeFile "Verschl.txt" out
-    putStrLn "Die verschlüsselte Nachricht lautet: "
-    putStrLn out
+    putStrLn "\n\tDie verschlüsselte Nachricht lautet: "
+    putStrLn ("\t" ++ out ++ "\n")
 
 entschl = do
+    putStrLn "Woher stammt die Verschlüsselte Nachricht?"
     input <- inputMethode "Verschl.txt"
     putStrLn "Wie lautet der Schlüssel?"
     putStr ">>"
@@ -70,14 +72,14 @@ entschl = do
     let
         out = caesar input (read key) (-1)
     writeFile "Nachricht.txt" out
-    putStrLn "Die entschlüsselte Nachricht lautet: "
-    putStrLn out
+    putStrLn "\n\tDie entschlüsselte Nachricht lautet: "
+    putStrLn ("\t" ++ out ++ "\n")
 
 
 inputMethode datei = do
     putStrLn "Möchtest du:"
-    putStrLn "1. Aus Datei lesen"
-    putStrLn "2. Über Kommandozeile eingeben"
+    putStrLn ("1. Aus Datei lesen [" ++ datei ++ "]")
+    putStrLn "2. Über Kommandozeile eingeben (Standard)"
     putStr ">>"
     inputM <- getLine
 

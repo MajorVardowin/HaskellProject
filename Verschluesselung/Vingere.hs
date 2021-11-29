@@ -45,8 +45,8 @@ verschl = do
     let
         out = vigenereVer input key
     writeFile "Verschl.txt" out
-    putStrLn "Die verschlüsselte Nachricht lautet: "
-    putStrLn out
+    putStrLn "\n\tDie verschlüsselte Nachricht lautet: "
+    putStrLn ("\t" ++ out ++ "\n")
 
 entschl = do
     putStrLn "Woher stammt die Verschlüsselte Nachricht?"
@@ -58,13 +58,13 @@ entschl = do
     let
         out = vigenereEnt input key
     writeFile "Nachricht.txt" out
-    putStrLn "Die entschlüsselte Nachricht lautet: "
-    putStrLn out
+    putStrLn "\n\tDie entschlüsselte Nachricht lautet: "
+    putStrLn ("\t" ++ out ++ "\n")
 
 
 inputMethode datei = do
-    putStrLn "1. Aus Datei lesen"
-    putStrLn "2. Über Kommandozeile eingeben"
+    putStrLn ("1. Aus Datei lesen [" ++ datei ++ "]")
+    putStrLn "2. Über Kommandozeile eingeben (Standard)"
     putStr ">> "
     inputM <- getLine
 

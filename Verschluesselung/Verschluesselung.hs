@@ -51,7 +51,9 @@ verschl eingabe = do
 
     writeFile "Verschl.txt" (show arr2)
 
-    print arr2
+    putStrLn "\n\tDie Verschlüsselte Nachricht lautet: "
+    putStr  ("\t" ++ show arr2)
+    putStrLn "\n"
 
     hClose handle
 

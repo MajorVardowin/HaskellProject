@@ -13,7 +13,8 @@ main = do
     putStrLn "1. RSA"
     putStrLn "2. Vigenere"
     putStrLn "3. Caesar"
-    putStrLn "Eingabe bitte mittels 1, 2 oder 3"
+    putStrLn "4. Beenden"
+    putStrLn "Eingabe bitte mittels 1, 2, 3, oder 4"
     putStr ">> "
     decide <- getLine
 
@@ -27,5 +28,14 @@ main = do
         else 
             if decide == "3"
             then do mainCaesar
-            else do main
+            else 
+                if decide == "4"
+                then putStrLn "Ende" 
+                else do 
+                    main
+    if decide == "4"
+    then 
+        putStr "" 
+    else do 
+        main
     

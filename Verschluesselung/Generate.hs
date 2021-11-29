@@ -17,7 +17,8 @@ generateDo = do
     writeFile "d.txt" (show d)
     writeFile "e.txt" (show e)
     writeFile "n.txt" (show n)
-    putStrLn ("Öffentliche Schluessel: e = " ++ show e ++ " n = " ++ show n)
+    putStrLn ("\n\tÖffentliche Schluessel: e = " ++ show e ++ " n = " ++ show n)
+    putStr "\n"
 
 
 generateE m = head [x | x<-isPrime m, mod m x /= 0]
