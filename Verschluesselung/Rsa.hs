@@ -6,6 +6,7 @@ import Generate
 import Verschluesselung
 import Entschluesselung
 
+-- Startpunkt des RSA-Verschlüsselungsverfahren
 mainRsa = do
     putStrLn "Möchtest du:"
     putStrLn "1. Primzahlengenerieren"
@@ -19,23 +20,23 @@ mainRsa = do
 
     if decide == "1"
     then do
-        generateDo
+        generateDo -- Primzahlen generieren
     else 
         if decide == "2"
         then do
-            verschlMain
+            verschlMain -- Verschlüsseln
         else
             if decide == "3"
             then 
-                entschl
+                entschl -- Entschlüsseln
             else do
                 if decide == "4"
                 then 
-                    putStrLn "Ende"
+                    putStrLn "Ende" -- Beenden
                 else do 
-                    mainRsa
+                    mainRsa -- Rekursiver Aufruf, damit Programm am Leben bleibt
     if decide == "4"
-    then putStrLn "Ende"
+    then putStrLn "Ende" -- Beenden
     else do 
-        mainRsa
+        mainRsa -- Rekursiver Aufruf, damit Programm am Leben bleibt
     --putStrLn "Ende"

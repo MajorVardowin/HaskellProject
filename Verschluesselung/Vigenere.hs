@@ -1,11 +1,12 @@
-module Vingere
+module Vigenere
 (
-    mainVingere
+    mainVigenere
 )
 where
 import System.IO
 
-mainVingere = do
+-- Start der Vigenere-Chiffre
+mainVigenere = do
     putStrLn "Möchtest du:"
     putStrLn "1. Verschlüsseln"
     putStrLn "2. Entschlüsseln"
@@ -16,53 +17,59 @@ mainVingere = do
 
     if decide == "1"
     then do
-        verschl
+        verschl -- startet die Verschlüsselung
     else 
         if decide == "2"
         then do
-            entschl
+            entschl -- startet die Entschlüsselung
         else
             if decide == "3"
             then 
-                putStrLn "Ende"
+                putStrLn "Ende" -- Beendet das Programm
             else do
-                mainVingere
+                mainVigenere -- Rekursiver Aufruf, hält das Programm am Leben
     if decide == "3"
-    then putStrLn "Ende"
+    then putStrLn "" -- Beendet das Programm
     else do 
-        mainVingere
+        mainVigenere -- Rekursiver Aufruf, hält das Programm am Leben
 
 
-verschl = do
+verschl = do -- Verschlüsselung
     putStrLn "Wie möchtest du die Nachricht eingeben?"
-    input <- inputMethode "Nachricht.txt"
+    input <- inputMethode "Nachricht.txt" -- bestimmt, ob input aus "Nachricht.txt" oder von der Kommandozeile kommt
     putStrLn "Wie lautet der Schluessel?"
     putStr ">> "
-    key <- getLine
+    key <- getLine -- Key muss ein String sein
 
-    writeFile "VingereKey.txt" key
+    writeFile "VingereKey.txt" key -- Key wird gespeichert
 
     let
-        out = vigenereVer input key
+        out = vigenereVer input key -- out ist verschlüsselte Nachricht
+
+    -- Ausgabe und Speichern der verschlüsselten Nachricht
     writeFile "Verschl.txt" out
     putStrLn "\n\tDie verschlüsselte Nachricht lautet: "
     putStrLn ("\t" ++ out ++ "\n")
 
-entschl = do
+entschl = do -- Entschlüsselung
     putStrLn "Woher stammt die Verschlüsselte Nachricht?"
-    input <- inputMethode "Verschl.txt"
+    input <- inputMethode "Verschl.txt" -- bestimmt, ob input aus "Verschl.txt" oder von der Kommandozeile kommt
     
     putStrLn "Als letztes den Key!"
-    key <- inputMethode "VingereKey.txt"
+    key <- inputMethode "VingereKey.txt"  -- bestimmt, ob key aus "VingereKey.txt" oder von der Kommandozeile kommt
 
     let
         out = vigenereEnt input key
+
+    -- Ausgabe und Speichern der entschlüsselten Nachricht
     writeFile "Nachricht.txt" out
     putStrLn "\n\tDie entschlüsselte Nachricht lautet: "
     putStrLn ("\t" ++ out ++ "\n")
 
 
 inputMethode datei = do
+    -- Liest Eingabe aus Datei oder von der Kommandozeile
+    -- gibt die entsprechende Eingabe zurück
     putStrLn ("1. Aus Datei lesen [" ++ datei ++ "]")
     putStrLn "2. Über Kommandozeile eingeben (Standard)"
     putStr ">> "
@@ -78,16 +85,19 @@ inputMethode datei = do
         putStr ">> "
         getLine
 
+-- Verschlüsselung
 vigenereVer nachricht schluessel  =  vigenere nachricht schluessel "" 1
+
+--Entschlüsselung
 vigenereEnt nachricht schluessel  = vigenere nachricht schluessel "" (-1)
 
-
-vigenere  nachricht  [] rest richtung  = []
+-- Itteriert für jeden Buchstaben durch
+vigenere nachricht  [] rest richtung  = []
 vigenere []  schluessel rest richtung = []
 vigenere nachricht schluessel [] richtung= vigenere nachricht schluessel schluessel richtung
 vigenere nachricht schluessel rest richtung= (toEnum(erechnetWert (head nachricht) (head rest) richtung)::Char) : vigenere (tail nachricht) schluessel (tail rest) richtung
 
--- Haben es einmal für Großbuchstaben und einmal für Buchstaben gemacht
+-- Addiert den Buchstaben und den Buchstaben des Keys
 erechnetWert buchst keyB richtung | großBuchstabe   = erzeugeAsciiBuchstabe (mod addiereBuchstG anzahlGroßer) groß
                             | kleinBuchstabe  = erzeugeAsciiBuchstabe (mod addiereBuchstK anzahlKleiner) klein
                             | otherwise = zahlA
@@ -105,23 +115,26 @@ erechnetWert buchst keyB richtung | großBuchstabe   = erzeugeAsciiBuchstabe (mo
           groß = 0
           klein = 1
 
+-- Formt zur erleichterten Berechnung um
 berechneAsciiZahl neuerWert  0 | neuerWert == 196 = 26
                              | neuerWert == 214 = 27
                              | neuerWert == 220 = 28
                              | otherwise = neuerWert -65
 
+-- Formt zur erleichterten Berechnung um
 berechneAsciiZahl neuerWert  1 | neuerWert == 228 = 26
                              | neuerWert == 246 = 27
                              | neuerWert == 252 = 28
                              | neuerWert == 223 = 29
                              | otherwise = neuerWert -97
 
-
+-- Formt von der erleichterten Berechnung wieder zurück
 erzeugeAsciiBuchstabe neuerWert  0 | mod neuerWert 29 == 26 = 196
                                     | mod neuerWert 29 == 27 = 214
                                     | mod neuerWert 29 == 28  = 220
                                     | otherwise = 65 + mod neuerWert 29
 
+-- Formt von der erleichterten Berechnung wieder zurück
 erzeugeAsciiBuchstabe neuerWert  1 | mod neuerWert 30 == 26 = 228
                                     | mod neuerWert 30 == 27 = 246
                                     | mod neuerWert 30 == 28 = 252

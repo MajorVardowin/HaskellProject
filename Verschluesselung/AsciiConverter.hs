@@ -5,6 +5,7 @@ module AsciiConverter
 where
 import Data.Char
 
+-- Wird mit Int-Wert aufgerufen, dieser muss in einen String umgerechnet werden
 asciiIntToString :: Integer -> [Char]
 asciiIntToString zahl  
         | zahl < 0 = "" -- Sicherheitsfall (unwahrscheinlich)
@@ -12,35 +13,26 @@ asciiIntToString zahl
         | otherwise = [chr intZahl]
                 where   intZahl :: (Integral a) => a
                         intZahl = fromInteger zahl
--- (redundanterAufruf (zahl / 255)) ++ mod intZahl 255
+-- (rekursiverAufruf (zahl / 255)) ++ chr (mod intZahl 255)
 -- [letztesModIntZahl, ... , erstesModIntZahl]
 
 
+-- Wird mit String aufgerufen, dieser muss in einen Int-Wert umgerechnet werden
 asciiStringtoInt :: Enum a => [a] -> Int
-asciiStringtoInt zahl =  asciiStringtoIntRechner zahl 0
+asciiStringtoInt str =  asciiStringtoIntRechner str 0
+
+-- Rechnet einen String in einen Int-Wert um
 asciiStringtoIntRechner :: (Integral t, Enum a) => [a] -> t -> Int
 asciiStringtoIntRechner [] x = 0
-asciiStringtoIntRechner zahl x  =  umwandelnInZahl (last zahl) * 255^ x + asciiStringtoIntRechner (init zahl) (x+1)
+asciiStringtoIntRechner str x  =  umwandelnInZahl (last str) * 255^ x + asciiStringtoIntRechner (init str) (x+1)
 -- asciiStringtoInt [Eingabe]
 -- asciiStringtoIntRechner [Eingabe] 0 = um
--- [ABC] = 67*255^0 + 66*255^1 + 65*255^2
+-- "ABC" = 67*255^0 + 66*255^1 + 65*255^2
 -- A = 65, B = 66, C = 67
 
+
+-- ASCII Wert pro Char ch berechnen
 umwandelnInZahl ch = fromEnum ch
--- ASCII Wert pro Char ch
 
+-- ASCII Wert in Buchstaben umformen
 umwandelnInBuchstabe zahl = toEnum zahl
-
-
-{-
-woerterAneinanderKlatschen [] = ""
-woerterAneinanderKlatschen (satz) =  laengeAnpassen (umwandelnInZahl ( head satz)) ++ (woerterAneinanderKlatschen (tail satz))
-
-wandelInZeichen zahl  | zahl <= 0 = do ""
-        | mod zahl 1000 <= 255 =  wandelInZeichen (div intZahl 1000) ++ [toEnum(mod intZahl 1000)]
-        | otherwise = wandelInZeichen (div intZahl  100) ++ [toEnum(mod intZahl 100)]
-                 where  intZahl :: (Integral a) => a
-                        intZahl = fromInteger zahl
-
-laengeAnpassen zahl =  if zahl < 100 then ('0':show zahl) else show(zahl)
--}

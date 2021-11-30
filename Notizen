@@ -30,4 +30,4 @@ stringToBinary "Test"
 
 
 
-
+-- ghc -o ProjektVerschluesselungen Main.hs

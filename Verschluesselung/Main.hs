@@ -5,10 +5,10 @@ module Main
 where
 import Rsa
 import Caesar
-import Vingere
+import Vigenere
 
--- ghc -o ProjektVerschluesselungen Main.hs
 
+-- "Hauptmenü" unseres Programms
 main = do
     putStrLn "Hallo welche Verschlüsselung möchtest du Nutzen?"
     putStrLn "1. RSA"
@@ -21,22 +21,22 @@ main = do
 
     if decide == "1"
     then do
-        mainRsa
+        mainRsa -- RSA starten
     else 
         if decide == "2"
         then do
-            mainVingere
+            mainVigenere -- Vigenere-Chiffre starten
         else 
             if decide == "3"
-            then do mainCaesar
+            then do mainCaesar -- Caesar-Chiffre starten
             else 
                 if decide == "4"
-                then putStrLn "Ende" 
+                then putStrLn "Ende" -- Beenden des Programms
                 else do 
-                    main
+                    main -- Rekursiver Aufruf um Programm am Leben zu halten
     if decide == "4"
     then 
-        putStr "" 
+        putStr "" -- Beenden
     else do 
-        main
+        main -- Rekursiver Aufruf um Programm am Leben zu halten
     
