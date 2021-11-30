@@ -90,6 +90,7 @@ inputMethode datei = do
     putStrLn "Möchtest du:"
     putStrLn ("1. Aus Datei lesen [" ++ datei ++ "]")
     putStrLn "2. Über Kommandozeile eingeben (Standard)"
+    
     putStr ">>"
     inputM <- getLine
 
@@ -99,5 +100,7 @@ inputMethode datei = do
         input <- hGetContents handle
         return input
     else do
+        putStrLn "Bitte Nachricht eingeben"
+        putStr ">>"
         getLine
     
