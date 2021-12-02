@@ -24,3 +24,4 @@ cabal.project.local~
 *.zip
 *.txt
 Haskell wie mit Python.docx
+Verschluesselung/ProjektWorkspace.code-workspace
