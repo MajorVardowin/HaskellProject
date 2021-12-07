@@ -6,6 +6,7 @@ where
 import Rsa
 import Caesar
 import Vigenere
+import qualified GHC as Main
 
 
 -- "Hauptmenü" unseres Programms
@@ -40,3 +41,13 @@ main = do
     else do 
         main -- Rekursiver Aufruf um Programm am Leben zu halten
     
+
+{-
+Anwendung lässt sich mit der .exe Ausführen
+
+Programm laden
+    :l Main.hs
+
+Programm starten
+    main
+-}
